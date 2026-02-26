@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -9,7 +10,7 @@ const Header = () => {
     { label: "Serviços", href: "#servicos" },
     { label: "Pacotes", href: "#pacotes" },
     { label: "Como Funciona", href: "#como-funciona" },
-    { label: "Contato", href: "#contato" },
+    { label: "Catálogo", href: "/servicos", isRoute: true },
   ];
 
   return (
@@ -25,21 +26,31 @@ const Header = () => {
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-primary-foreground/70 hover:text-primary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contato"
+          {links.map((link) =>
+            link.isRoute ? (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm font-medium text-primary-foreground/70 hover:text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-primary-foreground/70 hover:text-primary transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
+          <Link
+            to="/servicos"
             className="bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-semibold hover:brightness-110 transition"
           >
             Começar Agora
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -59,23 +70,34 @@ const Header = () => {
             className="md:hidden overflow-hidden bg-foreground/95 backdrop-blur-xl border-t border-primary/10"
           >
             <div className="flex flex-col gap-4 p-6">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-primary-foreground/80 hover:text-primary transition-colors font-medium"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#contato"
+              {links.map((link) =>
+                link.isRoute ? (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="text-primary-foreground/80 hover:text-primary transition-colors font-medium"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-primary-foreground/80 hover:text-primary transition-colors font-medium"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
+              <Link
+                to="/servicos"
                 className="bg-primary text-primary-foreground px-5 py-3 rounded-lg text-center font-semibold"
                 onClick={() => setMobileOpen(false)}
               >
                 Começar Agora
-              </a>
+              </Link>
             </div>
           </motion.nav>
         )}

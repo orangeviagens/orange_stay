@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-home.jpg";
 
 const HeroSection = () => {
@@ -55,13 +56,13 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a
-              href="#servicos"
+            <Link
+              to="/servicos"
               className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:brightness-110 transition glow-orange"
             >
               Explorar Serviços
               <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
             <a
               href="#como-funciona"
               className="inline-flex items-center justify-center gap-2 border border-primary-foreground/20 text-primary-foreground px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-foreground/5 transition"
